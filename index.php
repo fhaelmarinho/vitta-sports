@@ -1,0 +1,38 @@
+<?php
+include './includes/cabecalho.php'; 
+require './config/conexao.php';
+require './includes/funcoes.php';
+
+?>
+
+<main>
+    <section class="hero">
+        <div>
+            <small>Nova coleção • 2026</small>
+            <h1>VISTA SEU<br>
+                <em>MOVIMENTO</em>
+            </h1>
+            <p>Peças esportivas para acompanhar seu ritmo, dentro e fora do treino.</p>
+            <a href="loja.html" class="btn light">Explorar coleção</a>
+        </div>
+        <b class="hero-art">MOVE<br>YOUR<br>WAY.</b>
+    </section>
+
+    <section class="section">
+        <h2>Produtos em destaque</h2>
+        <div class="products">
+        <?php foreach($produtos as $p): ?>
+            <a href="produto.php?id=<?= (int)$p['id'] ?>" class="product">
+                <div class="visual">VITTA / <?= (int)$p['id'] ?>"
+                </div>
+                <h3>
+                    <?= e($p['nome']) ?>
+                </h3>
+                <b>R$ <?= number_format((float) $p['preco'],2,',','.') ?></b>
+            </a>
+        <?php endforeach; ?>
+        </div>
+    </section>
+
+</main>
+<?php include './includes/rodape.php'; ?>

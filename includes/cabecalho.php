@@ -15,7 +15,4 @@
             <a href="login.html">Entrar</a>
         </nav>
     </header>
-
-
-</body>
-</html>
+    
