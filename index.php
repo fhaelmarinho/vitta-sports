@@ -3,6 +3,7 @@ include './includes/cabecalho.php';
 require './config/conexao.php';
 require './includes/funcoes.php';
 
+$produtos = $pdo -> query ('SELECT id, nome, preco, descricao FROM produtos ORDER BY id DESC LIMIT 3') -> fetchAll();
 ?>
 
 <main>
