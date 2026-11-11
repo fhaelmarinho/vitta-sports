@@ -29,6 +29,7 @@ if (!$usuario OR !password_verify($senha, $usuario['senha'])){
     exit();
 }
 
+// regenerar ou gerar o id da sessão
 session_regenerate_id(true);
 $_SESSION['usuario_id'] = (int)$usuario['id'];
 $_SESSION['usuario_nome'] = $usuario['nome'];

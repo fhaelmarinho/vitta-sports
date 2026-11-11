@@ -14,7 +14,7 @@ $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 $stmt = $pdo -> prepare('SELECT p.*, c.nome AS categoria
                         FROM produtos p
                         INNER JOIN categorias c ON p.categoria_id = c.id
-                        WHERE p.id =:id');
+                        WHERE p.id = :id');
 
 $stmt -> execute([':id' => $id?:0]);
 
