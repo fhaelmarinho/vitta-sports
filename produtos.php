@@ -16,6 +16,48 @@ $stmt = $pdo -> prepare('SELECT p.*, c.nome AS categoria
                         INNER JOIN categorias c ON p.categoria_id = c.id
                         WHERE p.id = :id');
 
+// Alteramos o valor da variável hipotética (:id) para o valor da variável $id real
+// ?: Funciona como um if verificando se o valor não é zero
 $stmt -> execute([':id' => $id?:0]);
 
+// Captura tudo que vem do SELECT e armazena
 $produto = $stmt -> fetch();
+
+include __DIR__ . "/includes/cabecalho.php";
+?>
+
+<main class="section">
+    <?php if(!$produto): ?>    
+        <h1>Produto não encontrado!</h1>
+    <?php else: ?>
+        <div class="details">
+            <div class="visual large">
+                VITTA / <?php (int)$produto['id'] ?>
+            </div>
+            <div>
+                <small>
+                    <?= e($produto['categoria'] ?? 'VITTA') ?>
+                </small>
+                <h1>
+                    <?= e($produto['nome']) ?>
+                </h1>
+
+                <h2>
+                    <?= number_format((float) $produto['preco'],2,',','.'); ?>
+                </h2>
+
+                <p>
+                    Tamanho:
+                    <?=  e($produto['tamanho']) ?>
+                </p>
+
+                <p>
+                    Estoque:
+                    <?=  e($produto['estoque']) ?>
+                </p>
+            </div>
+        </div>
+        <?php endif; ?>
+</main>
+
+<?php include __DIR__ . "/includes/rodape.php" ?>
