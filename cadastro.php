@@ -55,16 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
                 $sql = 'INSERT INTO usuarios
-                            (nome, email, senha, tipo, criado_em)
+                            (nome, email, senha, e_admin, criado_em)
                         VALUES
-                            (:nome, :email, :senha, :tipo, NOW())';
+                            (:nome, :email, :senha, :e_admin, NOW())';
 
                 $inserir = $pdo->prepare($sql);
                 $inserir->execute([
                     ':nome'  => $nome,
                     ':email' => $email,
                     ':senha' => $senhaHash,
-                    ':tipo'  => 'cliente'
+                    ':e_admin'  => 'cliente'
                 ]);
 
                 $sucesso = 'Cadastro realizado com sucesso! Agora você já pode entrar na sua conta.';

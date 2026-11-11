@@ -16,7 +16,7 @@ $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 
 $senha = $_POST['senha'] ?? '';
 
-$stmt = $pdo -> prepare('SELECT id, nome, senha, tipo FROM usuarios WHERE email = :email LIMIT 1');
+$stmt = $pdo -> prepare('SELECT id, nome, senha, e_admin FROM usuarios WHERE email = :email LIMIT 1');
 
 $stmt -> execute([':email' => $email?:'']);
 
@@ -33,7 +33,7 @@ if (!$usuario OR !password_verify($senha, $usuario['senha'])){
 session_regenerate_id(true);
 $_SESSION['usuario_id'] = (int)$usuario['id'];
 $_SESSION['usuario_nome'] = $usuario['nome'];
-$_SESSION['tipo'] = $usuario['tipo'];
+$_SESSION['e_admin'] = $usuario['e_admin'];
 header('Location: ../admin/produtos.php');
 exit;
 
