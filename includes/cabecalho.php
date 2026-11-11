@@ -11,8 +11,9 @@
         <a href="index.html" class="logo">VITTA <span>SPORTS</span></a>
         <nav>
             <a href="index.html">Início</a>
-            <a href="loja.html">Loja</a>
-            <a href="login.html">Entrar</a>
+            <a href="../loja.html">Loja</a>
+            <a href="../login.php">Entrar</a>
+            <a href="../cadastro.php">Cadastro</a>
         </nav>
     </header>
     
