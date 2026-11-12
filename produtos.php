@@ -32,7 +32,7 @@ include __DIR__ . "/includes/cabecalho.php";
     <?php else: ?>
         <div class="details">
             <div class="visual large">
-                VITTA / <?php (int)$produto['id'] ?>
+                VITTA / <?= (int)$produto['id'] ?>
             </div>
             <div>
                 <small>

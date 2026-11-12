@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ':nome'  => $nome,
                     ':email' => $email,
                     ':senha' => $senhaHash,
-                    ':e_admin'  => 'cliente'
+                    ':e_admin'  => 0 // (0 - cliente / 1 - Admin)
                 ]);
 
                 $sucesso = 'Cadastro realizado com sucesso! Agora você já pode entrar na sua conta.';
