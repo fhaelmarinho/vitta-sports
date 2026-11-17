@@ -77,6 +77,7 @@ $cats = $pdo -> query('SELECT *
 
             <button class="btn" type="submit">Salvar</button>
         </form>
+        <br>
         <a href="produtos.php">Voltar</a>
 
     </main>
