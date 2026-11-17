@@ -6,7 +6,8 @@ exigirAdmin();
 require_once __DIR__ . '/../config/conexao.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-$p = ['nome' => '', 
+$p = ['id' => '',
+    'nome' => '', 
     'descricao' => '',
     'preco' => '',
     'tamanho' => '',
@@ -16,7 +17,7 @@ $p = ['nome' => '',
 if($id){
     $stmt = $pdo -> prepare('SELECT * 
                             FROM produtos
-                            WHERE id ="id');
+                            WHERE id = :id');
     $stmt -> execute([':id' => $id]);
     $p = $stmt -> fetch()?: $p;
 }
@@ -37,13 +38,13 @@ $cats = $pdo -> query('SELECT *
     <link rel="stylesheet" href="../asset/css/style.css">
 </head>
 <body>
-    <?php require __DIR__ . '/../includes/cabecalho.php'; ?>p
+    <?php require __DIR__ . '/../includes/cabecalho.php'; ?>
     <main class="section narrow">
         <h1>
             <?= $id? 'Editar': 'Cadastrar' ?> Produto
         </h1>
         <form class="adminform" method="POST" action="salvar.php">
-            <input type="hidden" name="id" value="<?= (int) $p['id'] ??0 ?>">
+            <input type="hidden" name="id" value="<?= (int)e($p['id']) ??0 ?>">
             <label for="nome">Nome</label>
 
             <input type="text" name="nome" required maxlength="100" value=" <?= e($p['nome']) ?>">
@@ -62,7 +63,7 @@ $cats = $pdo -> query('SELECT *
             <input type="text" name="tamanho" value="<?= e($p['tamanho']) ?>">
 
             <label for="estoque">Estoque</label>
-            <input type="number" min="0" value="<?= (int)$p['estoque'] ?>">
+            <input type="number" name="estoque" min="0" value="<?= (int)$p['estoque'] ?>">
             
             <label for="categoria">Categoria</label>
             <select name="categoria_id">
@@ -80,7 +81,7 @@ $cats = $pdo -> query('SELECT *
 
     </main>
     
-    <?php require __DIR__ . '/../rodape.php'; ?>
+    <?php require __DIR__ . '/../includes/rodape.php'; ?>
 
 
 </body>
